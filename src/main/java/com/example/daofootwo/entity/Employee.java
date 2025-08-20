@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.sql.Timestamp;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "employees")
@@ -31,6 +32,7 @@ public class Employee {
   @Column(name = "created_at", updatable = false)
   private Timestamp createdAt;
 
+  @UpdateTimestamp
   @Column(name = "updated_at")
   private Timestamp updatedAt;
 
