@@ -32,7 +32,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
   }
 
   @Override
-  public void deleteEmployee(Employee employee) {
-
+  public void deleteEmployee(Long employeeId) {
+    Employee foundEmployee = em.find(Employee.class, employeeId);
+    em.remove(foundEmployee);
   }
 }

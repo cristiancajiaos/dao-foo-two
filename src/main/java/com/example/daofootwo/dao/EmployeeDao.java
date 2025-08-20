@@ -11,6 +11,5 @@ public interface EmployeeDao {
 
   Employee getEmployeeById(Long employeeId);
 
-  void deleteEmployee(Employee employee);
-
+  void deleteEmployee(Long employeeId);
 }

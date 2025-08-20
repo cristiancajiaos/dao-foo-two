@@ -38,6 +38,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     return convertToDTO(foundEmployee);
   }
 
+  @Transactional
+  @Override
+  public void deleteEmployee(Long employeeId) {
+    employeeDao.deleteEmployee(employeeId);
+  }
+
   private Employee convertToEntity(EmployeeDTO employeeDTO) {
     return new Employee(employeeDTO.employeeId(), employeeDTO.employeeName(), employeeDTO.employeeUsername(), employeeDTO.employeeEmail());
   }
