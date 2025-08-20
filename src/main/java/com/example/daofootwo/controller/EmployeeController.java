@@ -2,8 +2,10 @@ package com.example.daofootwo.controller;
 
 import com.example.daofootwo.dto.EmployeeDTO;
 import com.example.daofootwo.service.EmployeeService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,17 @@ public class EmployeeController {
     try {
       EmployeeDTO createdEmployee = employeeService.saveOrUpdateEmployee(employeeDTO);
       return ResponseEntity.ok(createdEmployee);
+    } catch (Exception ex) {
+      System.err.println("Error: " + ex);
+      return ResponseEntity.notFound().build();
+    }
+  }
+
+  @GetMapping
+  public ResponseEntity<List<EmployeeDTO>> getAllEmployees() {
+    try {
+      List<EmployeeDTO> foundEmployees = employeeService.getAllEmployees();
+      return ResponseEntity.ok(foundEmployees);
     } catch (Exception ex) {
       System.err.println("Error: " + ex);
       return ResponseEntity.notFound().build();

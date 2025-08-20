@@ -3,6 +3,8 @@ package com.example.daofootwo.service;
 import com.example.daofootwo.dao.EmployeeDao;
 import com.example.daofootwo.dto.EmployeeDTO;
 import com.example.daofootwo.entity.Employee;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     Employee employeeToSave = convertToEntity(employeeDTO);
     Employee employeeSaved = employeeDao.saveOrUpdateEmployee(employeeToSave);
     return convertToDTO(employeeSaved);
+  }
+
+  @Override
+  public List<EmployeeDTO> getAllEmployees() {
+    return employeeDao.getAllEmployees().stream().map(this::convertToDTO).collect(Collectors.toList());
   }
 
   private Employee convertToEntity(EmployeeDTO employeeDTO) {

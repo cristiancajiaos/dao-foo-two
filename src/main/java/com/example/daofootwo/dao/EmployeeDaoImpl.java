@@ -3,6 +3,7 @@ package com.example.daofootwo.dao;
 import com.example.daofootwo.entity.Employee;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +21,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
   @Override
   public List<Employee> getAllEmployees() {
-    return null;
+    TypedQuery<Employee> employeeTypedQuery = em.createQuery("FROM Employee", Employee.class);
+    return employeeTypedQuery.getResultList();
   }
 
   @Override
