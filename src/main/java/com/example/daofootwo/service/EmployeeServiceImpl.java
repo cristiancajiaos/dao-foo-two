@@ -32,6 +32,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     return employeeDao.getAllEmployees().stream().map(this::convertToDTO).collect(Collectors.toList());
   }
 
+  @Override
+  public EmployeeDTO getEmployeeById(Long employeeId) {
+    Employee foundEmployee = employeeDao.getEmployeeById(employeeId);
+    return convertToDTO(foundEmployee);
+  }
+
   private Employee convertToEntity(EmployeeDTO employeeDTO) {
     return new Employee(employeeDTO.employeeId(), employeeDTO.employeeName(), employeeDTO.employeeUsername(), employeeDTO.employeeEmail());
   }

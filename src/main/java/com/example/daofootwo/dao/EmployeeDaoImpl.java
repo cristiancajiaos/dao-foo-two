@@ -27,7 +27,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
   @Override
   public Employee getEmployeeById(Long employeeId) {
-    return null;
+    Employee foundEmployee = em.find(Employee.class, employeeId);
+    return foundEmployee;
   }
 
   @Override
